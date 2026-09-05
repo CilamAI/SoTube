@@ -38,7 +38,7 @@
 
 ## Compatibility
 
-| Architecture | Status |
+| Platform | Status |
 |---|---|
 | Windows | Supported |
 | Ubuntu | Supported |
