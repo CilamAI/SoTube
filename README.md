@@ -43,6 +43,8 @@
 | Windows | Supported |
 | Ubuntu | Supported |
 
+---
+
 | Architecture |
 |---|
 | x86-64 (64-bit) |
