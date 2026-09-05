@@ -14,6 +14,10 @@
   <img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square" alt="License" />
 </p>
 
+<p align="center">
+  <img src="assets/screenshot.svg" width="900" alt="SoTube screenshot" />
+</p>
+
 ---
 
 ## Features
