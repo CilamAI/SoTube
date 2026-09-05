@@ -36,6 +36,15 @@
 
 ---
 
+## Compatibility
+
+| Architecture | Status |
+|---|---|
+| Windows | Supported |
+| Ubuntu | Supported |
+
+---
+
 ## Project Structure
 
 ```text
