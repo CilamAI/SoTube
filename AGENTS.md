@@ -12,9 +12,12 @@
 
 ```text
 SoTube/
-├── .github/               # GitHub Actions CI/CD workflows and community templates
+├── .github/               # GitHub Actions CI/CD workflows, automation, and templates
 │   ├── workflows/         # ci.yml and release.yml pipelines
-│   └── ISSUE_TEMPLATE/    # Bug report and feature request templates
+│   ├── ISSUE_TEMPLATE/    # Bug report and feature request templates
+│   ├── dependabot.yml     # Dependabot dependency update configuration
+│   └── pull_request_template.md
+├── .sst/                  # SST platform config and generated TypeScript declarations
 ├── .vscode/               # Editor configurations, debug launch targets, and tasks
 ├── api/                   # Electron IPC bridge and contextBridge definitions
 │   ├── preload.js         # Renderer bridge API
@@ -28,10 +31,14 @@ SoTube/
 │   └── index.js           # Convert API router, aggregator & unified IPC handlers
 ├── assets/                # Application icon, logo, and Inno Setup wizard bitmaps
 ├── locales/               # Internationalization dictionaries (7 languages)
-├── pages/                 # UI HTML templates (index.html, splash.html, tray.html)
+├── pages/                 # UI HTML templates (index, splash, tray, dialog, support)
 ├── settings/              # Application settings and default configuration
+│   ├── index.js           # Settings loader/saver and window-state persistence
+│   ├── default.json       # Default settings values
+│   └── .settings.json     # Local dev settings file (fallback storage)
 ├── scripts/               # Automation, build, and development scripts
 ├── dist/                  # Packaging outputs and installer binaries
+├── .gitignore             # Ignored paths (node_modules, dist, out, logs)
 ├── installer.iss          # Inno Setup 6 compiler script
 ├── main.js                # Electron main process entry point
 ├── preload.js             # Root preload forwarder
