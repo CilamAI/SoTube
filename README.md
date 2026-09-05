@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/screenshot.svg" width="900" alt="SoTube screenshot" />
+  <img src="assets/vscode.svg" width="900" alt="SoTube source code in VS Code" />
 </p>
 
 ---

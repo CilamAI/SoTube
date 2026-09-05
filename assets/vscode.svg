@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-label="SoTube source code in VS Code">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#41b9f6"/>
+      <stop offset="1" stop-color="#2a8fd0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="760" fill="#0d0d0d"/>
+  <g filter="url(#shadow)">
+    <rect x="60" y="20" width="1080" height="720" rx="10" fill="#1e1e1e" stroke="#333"/>
+
+    <!-- Title bar -->
+    <rect x="60" y="20" width="1080" height="34" fill="#323233"/>
+    <g fill="none" stroke="#b0b6bf" stroke-width="1.4" stroke-linecap="round">
+      <line x1="78" y1="37" x2="88" y2="37"/>
+      <rect x="82" y="32" width="12" height="10" rx="1"/>
+      <line x1="106" y1="33" x2="118" y2="45"/><line x1="118" y1="33" x2="106" y2="45"/>
+    </g>
+    <text x="600" y="41" font-family="Segoe UI, sans-serif" font-size="12.5" fill="#d4d4d4" text-anchor="middle">main.js — SoTube — Visual Studio Code</text>
+    <rect x="960" y="27" width="160" height="20" rx="5" fill="#252526"/>
+    <circle cx="1005" cy="37" r="4" fill="none" stroke="#6a6a6a" stroke-width="1.2"/>
+
+    <!-- Activity bar -->
+    <rect x="60" y="54" width="46" height="686" fill="#333">
+    </rect>
+    <g fill="none" stroke="#858585" stroke-width="1.6">
+      <path d="M78 92 l5 -6 l5 6 v10 h-10 Z"/>
+      <circle cx="83" cy="130" r="5"/><line x1="80" y1="127" x2="73" y2="120"/>
+      <circle cx="83" cy="160" r="4.6"/>
+      <line x1="83" y1="186" x2="83" y2="198"/>
+      <rect x="76" y="214" width="14" height="12" rx="1"/>
+      <path d="M80 240 l8 6 l-8 6 Z"/>
+    </g>
+
+    <!-- Explorer / file tree -->
+    <rect x="106" y="54" width="250" height="686" fill="#252526"/>
+    <text x="122" y="78" font-family="Segoe UI, sans-serif" font-size="11" font-weight="600" fill="#bbbbbb" letter-spacing="1">EXPLORER</text>
+    <line x1="122" y1="88" x2="340" y2="88" stroke="#3a3a3a"/>
+    <g font-family="Segoe UI, sans-serif" font-size="12.5">
+      <line x1="122" y1="108" x2="340" y2="108" stroke="#3a3a3a"/>
+      <!-- header -->
+      <text x="132" y="126" fill="#cccccc">▾ SOTUBE</text>
+      <g fill="#cccccc">
+        <text x="140" y="146" fill="#999">▾</text>
+        <text x="156" y="146" fill="#999">📂</text><text x="176" y="146" fill="#ccc">.github</text>
+        <text x="140" y="168" fill="#999">▾</text>
+        <text x="156" y="168" fill="#999">📂</text><text x="176" y="168" fill="#ccc">api</text>
+        <text x="140" y="190" fill="#999">▾</text>
+        <text x="156" y="190" fill="#999">📂</text><text x="176" y="190" fill="#ccc">convertapi</text>
+        <text x="156" y="212" fill="#999">📂</text><text x="176" y="212" fill="#ccc">assets</text>
+        <text x="156" y="234" fill="#999">📂</text><text x="176" y="234" fill="#ccc">locales</text>
+        <text x="156" y="256" fill="#999">📂</text><text x="176" y="256" fill="#ccc">pages</text>
+        <text x="156" y="278" fill="#999">📂</text><text x="176" y="278" fill="#ccc">scripts</text>
+        <text x="156" y="300" fill="#999">📂</text><text x="176" y="300" fill="#ccc">settings</text>
+        <text x="156" y="322" fill="#ffd47e">📄</text><text x="176" y="322" fill="#d4d4d4">main.js</text>
+        <text x="156" y="344" fill="#9cdcfe">📄</text><text x="176" y="344" fill="#d4d4d4">renderer.js</text>
+        <text x="156" y="366" fill="#9cdcfe">📄</text><text x="176" y="366" fill="#d4d4d4">package.json</text>
+        <text x="156" y="388" fill="#9cdcfe">📄</text><text x="176" y="388" fill="#d4d4d4">README.md</text>
+      </g>
+    </g>
+
+    <!-- Editor tab bar -->
+    <rect x="356" y="54" width="784" height="686" fill="#1e1e1e"/>
+    <g font-family="Segoe UI, sans-serif" font-size="12">
+      <rect x="356" y="54" width="120" height="30" fill="#1e1e1e"/>
+      <text x="368" y="74" fill="#d4d4d4"><tspan fill="#ffd47e">JS</tspan> main.js <tspan fill="#858585">×</tspan></text>
+      <rect x="476" y="54" width="120" height="30" fill="#2d2d2d"/>
+      <text x="488" y="74" fill="#9ca0a6"><tspan fill="#c586c0">JS</tspan> renderer.js <tspan fill="#858585">×</tspan></text>
+    </g>
+    <line x1="356" y1="84" x2="1140" y2="84" stroke="#3a3a3a"/>
+
+    <!-- Code -->
+    <g font-family="Consolas, 'Courier New', monospace" font-size="13">
+      <!-- line numbers -->
+      <g fill="#6e6e6e" font-size="11.5" text-anchor="end">
+        <text x="372" y="106">1</text>
+        <text x="372" y="128">2</text>
+        <text x="372" y="150">3</text>
+        <text x="372" y="172">4</text>
+        <text x="372" y="194">5</text>
+        <text x="372" y="216">6</text>
+        <text x="372" y="238">7</text>
+        <text x="372" y="260">8</text>
+        <text x="372" y="282">9</text>
+        <text x="372" y="304">10</text>
+        <text x="372" y="326">11</text>
+        <text x="372" y="348">12</text>
+        <text x="372" y="370">13</text>
+        <text x="372" y="392">14</text>
+        <text x="372" y="414">15</text>
+        <text x="372" y="436">16</text>
+        <text x="372" y="458">17</text>
+      </g>
+
+      <g fill="#d4d4d4">
+        <text x="386" y="106"><tspan fill="#c586c0">const</tspan> { <tspan fill="#9cdcfe">app</tspan>, <tspan fill="#9cdcfe">BrowserWindow</tspan>, <tspan fill="#9cdcfe">Tray</tspan>, <tspan fill="#9cdcfe">Menu</tspan> } = <tspan fill="#c586c0">require</tspan>(<tspan fill="#ce9178">'electron'</tspan>);</text>
+        <text x="386" y="128"> </text>
+        <text x="386" y="150"><tspan fill="#c586c0">const</tspan> <tspan fill="#9cdcfe">path</tspan> = <tspan fill="#c586c0">require</tspan>(<tspan fill="#ce9178">'path'</tspan>);</text>
+        <text x="386" y="172"><tspan fill="#c586c0">const</tspan> <tspan fill="#9cdcfe">settingsManager</tspan> = <tspan fill="#c586c0">require</tspan>(<tspan fill="#ce9178">'./settings'</tspan>);</text>
+        <text x="386" y="194"><tspan fill="#6a9955">// Main window lifecycle &amp; tray</tspan></text>
+        <text x="386" y="216"> </text>
+        <text x="386" y="238"><tspan fill="#c586c0">function</tspan> <tspan fill="#dcdcaa">createWindow</tspan>() {</text>
+        <text x="386" y="260">  <tspan fill="#c586c0">const</tspan> <tspan fill="#9cdcfe">userSettings</tspan> = <tspan fill="#9cdcfe">settingsManager</tspan>.<tspan fill="#dcdcaa">loadSettings</tspan>();</text>
+        <text x="386" y="282">  <tspan fill="#c586c0">const</tspan> <tspan fill="#9cdcfe">isLight</tspan> = <tspan fill="#9cdcfe">userSettings</tspan> &amp;&amp; <tspan fill="#9cdcfe">userSettings</tspan>.<tspan fill="#9cdcfe">theme</tspan> === <tspan fill="#ce9178">'light'</tspan>;</text>
+        <text x="386" y="304"> </text>
+        <text x="386" y="326">  <tspan fill="#9cdcfe">mainWindow</tspan> = <tspan fill="#c586c0">new</tspan> <tspan fill="#4ec9b0">BrowserWindow</tspan>({</text>
+        <text x="386" y="348">    <tspan fill="#9cdcfe">width</tspan>: <tspan fill="#b5cea8">680</tspan>,</text>
+        <text x="386" y="370">    <tspan fill="#9cdcfe">height</tspan>: <tspan fill="#b5cea8">740</tspan>,</text>
+        <text x="386" y="392">    <tspan fill="#9cdcfe">backgroundColor</tspan>: <tspan fill="#9cdcfe">isLight</tspan> ? <tspan fill="#ce9178">'#f3f3f3'</tspan> : <tspan fill="#ce9178">'#202020'</tspan>,</text>
+        <text x="386" y="414">    <tspan fill="#9cdcfe">webPreferences</tspan>: { <tspan fill="#9cdcfe">preload</tspan>: <tspan fill="#dcdcaa">getPreloadPath</tspan>() }</text>
+        <text x="386" y="436">  });</text>
+        <text x="386" y="458"> </text>
+      </g>
+    </g>
+
+    <!-- Minimap -->
+    <rect x="1100" y="88" width="20" height="560" fill="#2a2a2a"/>
+    <rect x="1102" y="96" width="16" height="290" rx="3" fill="#41b9f6" opacity="0.35"/>
+
+    <!-- Status bar -->
+    <rect x="106" y="706" width="1034" height="34" fill="#007acc"/>
+    <g font-family="Segoe UI, sans-serif" font-size="11.5">
+      <text x="122" y="727" fill="#ffffff">⎇ main</text>
+      <text x="270" y="727" fill="#ffffff">⚡ ERROR 0  ⚠ 0</text>
+      <text x="1080" y="727" fill="#ffffff" text-anchor="end">Ln 7, Col 25   UTF-8   LF   JavaScript</text>
+    </g>
+  </g>
+</svg>
