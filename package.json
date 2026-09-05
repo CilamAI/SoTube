@@ -24,7 +24,7 @@
   "author": "SoTube",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/node": "^24.13.3",
+    "@types/node": "^26.4.1",
     "config": "^3.3.12",
     "electron": "^44.1.1",
     "electron-builder": "^26.15.3",
