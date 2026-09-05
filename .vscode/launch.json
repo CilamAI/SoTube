@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Main Process",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "args": ["."],
+      "outputCapture": "std",
+      "sourceMaps": false
+    },
+    {
+      "name": "Run Watch Mode",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/scripts/watch.js",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run Test Suite",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/scripts/test.js",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run Diagnostics (info.js)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/scripts/info.js",
+      "console": "integratedTerminal"
+    }
+  ]
+}

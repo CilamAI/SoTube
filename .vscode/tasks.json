@@ -1,0 +1,64 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "start",
+      "label": "npm: start",
+      "detail": "Launch SoTube Electron desktop app",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "label": "npm: dev",
+      "detail": "Start live development file watcher",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "label": "npm: watch",
+      "detail": "Start live development file watcher",
+      "problemMatcher": [],
+      "isBackground": true
+    },
+    {
+      "type": "npm",
+      "script": "test",
+      "label": "npm: test",
+      "detail": "Run automated validation test suite",
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev:inno",
+      "label": "npm: dev:inno",
+      "detail": "Compile Inno Setup Windows installer (dist/SoTubeSetup.exe)",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "dev:stats",
+      "label": "npm: dev:stats",
+      "detail": "Display codebase lines-of-code and file statistics",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "bun",
+      "label": "npm: bun",
+      "detail": "Check Bun runtime diagnostics and workflows",
+      "problemMatcher": []
+    }
+  ]
+}

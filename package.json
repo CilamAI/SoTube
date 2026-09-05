@@ -1,0 +1,70 @@
+{
+  "name": "sotube",
+  "version": "26.0.0",
+  "description": "SoTube - minimal Electron desktop app",
+  "main": "main.js",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "dev": "node scripts/watch.js",
+    "watch": "node scripts/watch.js",
+    "dist:dir": "node scripts/build.js",
+    "build:inno": "node scripts/build-inno.js",
+    "dev:inno": "node scripts/build-inno.js",
+    "test": "node scripts/test.js",
+    "postinstall": "node scripts/postinstall.js",
+    "dev:stats": "node scripts/stats.js",
+    "info": "node scripts/info.js",
+    "bun": "node scripts/bun.js",
+    "check": "node scripts/check.js",
+    "typecheck": "tsc --noEmit",
+    "install:ps1": "powershell -ExecutionPolicy Bypass -File ./install.ps1"
+  },
+  "author": "SoTube",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "config": "^3.3.12",
+    "electron": "^44.1.1",
+    "electron-builder": "^26.15.3",
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "path": "^0.12.7",
+    "typescript": "^5.9.3"
+  },
+  "build": {
+    "appId": "com.sotube.app",
+    "productName": "SoTube",
+    "npmRebuild": false,
+    "files": [
+      "main.js",
+      "preload.js",
+      "api/**/*",
+      "convertapi/**/*",
+      "settings/**/*",
+      "renderer.js",
+      "pages/**/*",
+      "styles.css",
+      "locales/**/*",
+      "assets/**/*",
+      "LICENSE.txt",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico",
+      "artifactName": "SoTubeSetup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "license": "LICENSE.txt",
+      "installerSidebar": "assets/sidebar.bmp",
+      "uninstallerSidebar": "assets/sidebar.bmp"
+    }
+  }
+}

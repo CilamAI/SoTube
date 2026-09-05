@@ -1,0 +1,14 @@
+{
+  "theme": "dark",
+  "format": "1080p",
+  "location": "",
+  "subtitles": true,
+  "subtitleLangs": [
+    "English"
+  ],
+  "audioTracks": false,
+  "notify": true,
+  "parallel": 2,
+  "language": "English",
+  "cookies": false
+}

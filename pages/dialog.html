@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' file: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' file: data: blob:; connect-src 'self';" />
+  <title>SoTube</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --font: "Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+      --card-bg: #202020;
+      --footer-bg: #18191d;
+      --border: rgba(255, 255, 255, 0.12);
+      --footer-border: rgba(255, 255, 255, 0.08);
+      --title-color: #ffffff;
+      --text-muted: #cccccc;
+      --btn-bg: rgba(255, 255, 255, 0.06);
+      --btn-border: rgba(255, 255, 255, 0.10);
+      --btn-border-bottom: rgba(255, 255, 255, 0.15);
+      --btn-hover: rgba(255, 255, 255, 0.10);
+      --btn-active: rgba(255, 255, 255, 0.04);
+      --btn-text: #ffffff;
+      --btn-focus: #38a7f6;
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --card-bg: #ffffff;
+      --footer-bg: #f3f3f3;
+      --border: rgba(0, 0, 0, 0.14);
+      --footer-border: rgba(0, 0, 0, 0.08);
+      --title-color: #1b1b1b;
+      --text-muted: #5c5c5c;
+      --btn-bg: #fbfbfb;
+      --btn-border: #d4d4d4;
+      --btn-border-bottom: #b8b8b8;
+      --btn-hover: #f5f5f5;
+      --btn-active: #ebebeb;
+      --btn-text: #1b1b1b;
+      --btn-focus: #0067c0;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      animation: none !important;
+      transition: none !important;
+      font-family: var(--font);
+    }
+
+    html,
+    body {
+      background: transparent !important;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+      cursor: default;
+    }
+
+    .dialog-card {
+      width: 100%;
+      height: 100%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .dialog-content {
+      flex: 1;
+      padding: 24px 24px 18px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      -webkit-app-region: drag;
+    }
+
+    .dialog-heading {
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--title-color);
+      line-height: 1.25;
+      letter-spacing: -0.2px;
+      -webkit-app-region: drag;
+    }
+
+    .dialog-detail {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      -webkit-app-region: drag;
+    }
+
+    .dialog-footer {
+      padding: 16px 24px 18px 24px;
+      background: var(--footer-bg);
+      border-top: 1px solid var(--footer-border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      -webkit-app-region: no-drag;
+    }
+
+    .btn {
+      width: 100%;
+      height: 32px;
+      padding: 0 16px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      border-bottom-color: var(--btn-border-bottom);
+      border-radius: 4px;
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--btn-text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+      outline: none;
+      -webkit-app-region: no-drag;
+    }
+
+    .btn:hover {
+      background: var(--btn-hover);
+    }
+
+    .btn:active {
+      background: var(--btn-active);
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--btn-focus);
+      outline-offset: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dialog-card">
+    <div class="dialog-content">
+      <div class="dialog-heading">Quit SoTube?</div>
+      <div class="dialog-detail">Active downloads will be stopped. Do you want to quit?</div>
+    </div>
+
+    <div class="dialog-footer">
+      <button class="btn" id="btnQuit">Quit</button>
+      <button class="btn" id="btnCancel">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var root = document.documentElement;
+
+      function applyTheme(t) {
+        t = (t === "light") ? "light" : "dark";
+        root.setAttribute("data-theme", t);
+        document.body.classList.toggle("light", t === "light");
+      }
+
+      function initTheme() {
+        try {
+          var s = JSON.parse(localStorage.getItem("sotube-settings") || "{}");
+          if (s && (s.theme === "light" || s.theme === "dark")) applyTheme(s.theme);
+        } catch (_) { }
+
+        try {
+          if (window.sotube && typeof window.sotube.getTheme === "function") {
+            window.sotube.getTheme().then(function (t) {
+              if (t === "light" || t === "dark") applyTheme(t);
+            }).catch(function () { });
+          }
+        } catch (_) { }
+
+        try {
+          if (window.sotube && window.sotube.dialog && typeof window.sotube.dialog.onTheme === "function") {
+            window.sotube.dialog.onTheme(function (t) { applyTheme(t); });
+          }
+        } catch (_) { }
+      }
+
+      initTheme();
+
+      function onCancel() {
+        try {
+          if (window.sotube && window.sotube.dialog && typeof window.sotube.dialog.quitCancel === "function") {
+            window.sotube.dialog.quitCancel();
+          } else {
+            window.close();
+          }
+        } catch (_) {
+          window.close();
+        }
+      }
+
+      function onQuit() {
+        try {
+          if (window.sotube && window.sotube.dialog && typeof window.sotube.dialog.quitConfirm === "function") {
+            window.sotube.dialog.quitConfirm();
+          }
+        } catch (_) { }
+      }
+
+      var cancelBtn = document.getElementById("btnCancel");
+      if (cancelBtn) cancelBtn.addEventListener("click", onCancel);
+
+      var quitBtn = document.getElementById("btnQuit");
+      if (quitBtn) quitBtn.addEventListener("click", onQuit);
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          e.preventDefault();
+          onCancel();
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (document.activeElement === cancelBtn) {
+            onCancel();
+          } else {
+            onQuit();
+          }
+        }
+      });
+
+      window.addEventListener("dragstart", function (e) { e.preventDefault(); });
+      window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
+      setTimeout(function () {
+        if (cancelBtn) cancelBtn.focus();
+      }, 50);
+    })();
+  </script>
+</body>
+
+</html>

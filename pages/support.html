@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; font-src 'self' https: data:; img-src 'self' https: data: blob:; connect-src 'self' https:;">
+  <title>SoTube Support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <script async src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="icon" type="image/x-icon" href="../assets/icon.ico">
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    body {
+      overflow-y: auto;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .support-page-container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .support-hero {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(56, 167, 246, 0.12), rgba(139, 92, 246, 0.08));
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .support-hero-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--color-primary);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(56, 167, 246, 0.35);
+    }
+
+    .support-hero-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 4px;
+    }
+
+    .support-hero-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .support-card {
+      background-color: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .support-card:hover {
+      border-color: rgba(56, 167, 246, 0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .support-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .support-card-head i {
+      font-size: 20px;
+      color: var(--color-primary);
+    }
+
+    .support-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .support-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      transition: all 0.12s ease;
+      margin-top: auto;
+    }
+
+    .support-btn:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    .support-btn-primary {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .support-btn-primary:hover {
+      filter: brightness(1.1);
+      color: #ffffff;
+    }
+
+    .diag-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .diag-table td {
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .diag-label {
+      color: var(--text-muted);
+      width: 40%;
+    }
+
+    .diag-value {
+      color: var(--text-main);
+      font-family: monospace;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #22c55e;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: var(--bg-sidebar);
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .faq-question {
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .faq-answer {
+      padding: 0 16px 12px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: none;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-item.open .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .toast-notice {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background-color: var(--bg-sidebar);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.1, 0.9, 0.2, 1);
+      z-index: 1000;
+    }
+
+    .toast-notice.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app-window" style="height: 100vh; overflow-y: auto;">
+    <div class="title-bar">
+      <div class="title-left">
+        <img class="title-logo-mini" src="../assets/icon.png" alt="SoTube">
+        <span class="app-title">SoTube &mdash; Support</span>
+      </div>
+      <div class="window-controls">
+        <button class="wc-btn wc-close" id="btn-close" aria-label="Close" title="Close">
+          <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+            <line x1="0.5" y1="0.5" x2="9.5" y2="9.5" stroke="currentColor" stroke-width="1" />
+            <line x1="9.5" y1="0.5" x2="0.5" y2="9.5" stroke="currentColor" stroke-width="1" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="support-page-container">
+      <div class="support-hero">
+        <div class="support-hero-icon">
+          <i class="ph ph-lifebuoy"></i>
+        </div>
+        <div class="support-hero-text">
+          <h1>SoTube Help & Support</h1>
+          <p>Find answers to common issues, run system diagnostics, check dependency status, or submit feedback.</p>
+        </div>
+      </div>
+
+      <div class="support-grid">
+        <div class="support-card">
+          <div class="support-card-head">
+            <i class="ph ph-folder-open"></i>
+            <span>Storage & Downloads</span>
+          </div>
+          <p>Quickly access your media folder to view downloaded videos, MP3 tracks, and trimmed clips.</p>
+          <button class="support-btn" id="btn-open-downloads">
+            <i class="ph ph-arrow-square-out"></i>
+            <span>Open Downloads Folder</span>
+          </button>
+        </div>
+
+        <div class="support-card">
+          <div class="support-card-head">
+            <i class="ph ph-bug"></i>
+            <span>Report a Bug</span>
+          </div>
+          <p>Encountered a download error, conversion crash, or broken extractor? File an issue on GitHub.</p>
+          <a class="support-btn" id="link-github-issues" href="https://github.com/topics/youtube-downloader" target="_blank">
+            <i class="ph ph-github-logo"></i>
+            <span>Open Issue Tracker</span>
+          </a>
+        </div>
+
+        <div class="support-card">
+          <div class="support-card-head">
+            <i class="ph ph-chats-circle"></i>
+            <span>Feature Suggestions</span>
+          </div>
+          <p>Have an idea for a new feature, platform extractor, or trimmer enhancement? Let us know!</p>
+          <a class="support-btn" id="link-github-discussions" href="https://github.com" target="_blank">
+            <i class="ph ph-lightbulb"></i>
+            <span>Request a Feature</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="help-card" style="margin-top: 12px;">
+        <div class="help-card-title">
+          <i class="ph ph-question"></i>
+          <span>Frequently Asked Questions</span>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Why did my download or search request fail?</span>
+              <i class="ph ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+              Download issues typically occur due to temporary network blocks or bot protection. Verify your internet connection, confirm the link is accessible in a web browser, and try selecting "720p" or "480p" format.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How do I download audio only as MP3?</span>
+              <i class="ph ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+              Click the format selector next to the search input and choose "MP3 Audio". SoTube will extract the audio stream and convert it to high-bitrate MP3 automatically.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>How does the Lossless Trimmer work?</span>
+              <i class="ph ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+              Navigate to the Trim tab, choose a video file, and set start and end points using the interactive playback slider. Click "Start Trimming" to cut with zero re-encoding loss.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">
+              <span>Where are my downloads saved?</span>
+              <i class="ph ph-caret-down"></i>
+            </div>
+            <div class="faq-answer">
+              By default, files are saved in your Windows Downloads folder. You can change this anytime under Settings &gt; Download Folder.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-notice" id="toast-notice">
+    <i class="ph ph-check-circle" style="color: #22c55e; font-size: 18px;"></i>
+    <span id="toast-text">Diagnostics copied to clipboard!</span>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function showToast(text) {
+        var t = document.getElementById("toast-notice");
+        var msg = document.getElementById("toast-text");
+        if (msg) msg.textContent = text || "Copied to clipboard!";
+        if (t) {
+          t.classList.add("show");
+          setTimeout(function () { t.classList.remove("show"); }, 2400);
+        }
+      }
+
+      document.querySelectorAll(".faq-question").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var item = btn.closest(".faq-item");
+          if (item) item.classList.toggle("open");
+        });
+      });
+
+      var btnClose = document.getElementById("btn-close");
+      if (btnClose) {
+        btnClose.addEventListener("click", function () {
+          try {
+            if (window.sotube && window.sotube.windowControls) {
+              window.sotube.windowControls.close();
+            } else {
+              window.close();
+            }
+          } catch (_) {
+            window.close();
+          }
+        });
+      }
+
+      var btnDownloads = document.getElementById("btn-open-downloads");
+      if (btnDownloads) {
+        btnDownloads.addEventListener("click", function () {
+          try {
+            if (window.sotube && typeof window.sotube.openDownloads === "function") {
+              window.sotube.openDownloads();
+            }
+          } catch (_) { }
+        });
+      }
+
+      var btnCopyDiag = document.getElementById("btn-copy-diag");
+      if (btnCopyDiag) {
+        btnCopyDiag.addEventListener("click", function () {
+          var info = [
+            "SoTube v26.0.0 Support Diagnostics",
+            "OS: " + (navigator.userAgent || "Windows"),
+            "Date: " + new Date().toISOString(),
+            "Engine: yt-dlp + FFmpeg",
+            "Status: Operational"
+          ].join("\n");
+
+          navigator.clipboard.writeText(info).then(function () {
+            showToast("Diagnostics copied to clipboard!");
+          }).catch(function () {
+            showToast("Copied to clipboard!");
+          });
+        });
+      }
+
+      var openLink = function (url) {
+        try {
+          if (window.sotube && typeof window.sotube.openExternal === "function") {
+            window.sotube.openExternal(url);
+          } else {
+            window.open(url, "_blank");
+          }
+        } catch (_) {
+          window.open(url, "_blank");
+        }
+      };
+
+      var linkIssues = document.getElementById("link-github-issues");
+      if (linkIssues) {
+        linkIssues.addEventListener("click", function (e) {
+          e.preventDefault();
+          openLink("https://github.com");
+        });
+      }
+
+      var linkDiscussions = document.getElementById("link-github-discussions");
+      if (linkDiscussions) {
+        linkDiscussions.addEventListener("click", function (e) {
+          e.preventDefault();
+          openLink("https://github.com");
+        });
+      }
+
+      try {
+        if (window.sotube && window.sotube.versions) {
+          var el = document.getElementById("diag-electron");
+          if (el && typeof window.sotube.versions.electron === "function") {
+            el.textContent = "Electron v" + window.sotube.versions.electron();
+          }
+        }
+      } catch (_) { }
+    })();
+  </script>
+</body>
+
+</html>

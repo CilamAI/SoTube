@@ -1,0 +1,19 @@
+[install]
+registry = "https://registry.npmjs.org/"
+saveTextLockfile = true
+exact = false
+peer = true
+optional = true
+dev = true
+
+[install.lockfile]
+save = true
+
+[install.cache]
+disable = false
+
+[test]
+root = "./scripts"
+
+[run]
+shell = "powershell"

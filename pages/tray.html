@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self' file: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' file: data: blob:; connect-src 'self';" />
+  <title>SoTube</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --font: "Segoe UI Variable Text", "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    }
+
+    :root,
+    html[data-theme="dark"] {
+      --flyout-bg: rgba(44, 44, 44, 0.96);
+      --flyout-border: rgba(255, 255, 255, 0.09);
+      --flyout-shadow: none;
+      --text-primary: #ffffff;
+      --icon-color: rgba(255, 255, 255, 0.78);
+      --item-hover: rgba(255, 255, 255, 0.08);
+      --item-active: rgba(255, 255, 255, 0.04);
+      --item-focus: #38a7f6;
+      --separator: rgba(255, 255, 255, 0.08);
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
+      --flyout-bg: rgba(249, 249, 249, 0.96);
+      --flyout-border: rgba(0, 0, 0, 0.12);
+      --flyout-shadow: none;
+      --text-primary: #1b1b1b;
+      --icon-color: rgba(0, 0, 0, 0.65);
+      --item-hover: rgba(0, 0, 0, 0.06);
+      --item-active: rgba(0, 0, 0, 0.03);
+      --item-focus: #0067c0;
+      --separator: rgba(0, 0, 0, 0.08);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+      -webkit-user-select: none !important;
+      user-select: none !important;
+      -webkit-app-region: no-drag !important;
+      animation: none !important;
+      transition: none !important;
+    }
+
+    html,
+    body {
+      background: transparent !important;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      -webkit-user-drag: none !important;
+      user-drag: none !important;
+      -webkit-app-region: no-drag !important;
+    }
+
+    body {
+      font-family: var(--font);
+      font-size: 13.5px;
+      line-height: 1.4;
+      color: var(--text-primary);
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+      cursor: default;
+    }
+
+    .flyout {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: var(--flyout-bg);
+      -webkit-backdrop-filter: blur(30px) saturate(1.25);
+      backdrop-filter: blur(30px) saturate(1.25);
+      border: 1px solid var(--flyout-border);
+      border-radius: 8px;
+      box-shadow: none;
+      padding: 4px;
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      gap: 2px;
+    }
+
+    .sep {
+      height: 1px;
+      flex: none;
+      background: var(--separator);
+      margin: 3px 6px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      height: 32px;
+      min-height: 32px;
+      padding: 0 10px;
+      border: 0;
+      border-radius: 4px;
+      background: transparent;
+      color: var(--text-primary);
+      font: inherit;
+      font-size: 13.5px;
+      font-weight: 400;
+      text-align: left;
+      white-space: nowrap;
+      overflow: hidden;
+      cursor: default;
+      outline: none;
+    }
+
+    .item:hover {
+      background: var(--item-hover);
+    }
+
+    .item:hover .item-icon {
+      color: var(--text-primary);
+    }
+
+    .item:active {
+      background: var(--item-active);
+    }
+
+    .item:focus {
+      outline: none;
+    }
+
+    .item:focus-visible {
+      outline: 2px solid var(--item-focus);
+      outline-offset: -2px;
+    }
+
+    .item-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--icon-color);
+      pointer-events: none;
+    }
+
+    .item-icon svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+
+    .item-text {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="flyout" id="flyout">
+    <div class="menu" role="menu" aria-label="SoTube tray menu">
+      <button class="item" id="btnOpen" role="menuitem" type="button" draggable="false">
+        <span class="item-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v7A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 3h-11zm0 1h11a.5.5 0 0 1 .5.5V6H2v-1.5a.5.5 0 0 1 .5-.5zm-.5 3h12v4.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V7z" />
+          </svg>
+        </span>
+        <span class="item-text" id="textOpen">Open SoTube</span>
+      </button>
+
+      <button class="item" id="btnDownloads" role="menuitem" type="button" draggable="false">
+        <span class="item-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M1.5 3.5A1.5 1.5 0 0 1 3 2h3.293a1.5 1.5 0 0 1 1.06.44l1.208 1.207A.5.5 0 0 0 8.914 4H13a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 1-1.5 1.5H3A1.5 1.5 0 0 1 1.5 12.5v-9zm1 1.5V12.5a.5.5 0 0 0 .5.5H13a.5.5 0 0 0 .5-.5V5.5a.5.5 0 0 0-.5-.5H8.914a1.5 1.5 0 0 1-1.06-.44L6.646 3.353A.5.5 0 0 0 6.293 3H3a.5.5 0 0 0-.5.5z" />
+          </svg>
+        </span>
+        <span class="item-text">Open Downloads</span>
+      </button>
+
+      <div class="sep" role="separator"></div>
+
+      <button class="item" id="btnQuit" role="menuitem" type="button" draggable="false">
+        <span class="item-icon">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 1 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 0 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06z" />
+          </svg>
+        </span>
+        <span class="item-text">Close SoTube</span>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var root = document.documentElement;
+
+      function applyTheme(t) {
+        t = (t === "light") ? "light" : "dark";
+        root.setAttribute("data-theme", t);
+        document.body.classList.toggle("light", t === "light");
+        try { root.style.colorScheme = t; } catch (_) { }
+      }
+
+      function readStoredTheme() {
+        try {
+          var s = JSON.parse(localStorage.getItem("sotube-settings") || "{}");
+          if (s && (s.theme === "light" || s.theme === "dark")) return s.theme;
+        } catch (_) { }
+        return null;
+      }
+
+      function initTheme() {
+        var stored = readStoredTheme();
+        if (stored) {
+          applyTheme(stored);
+        } else {
+          applyTheme("dark");
+        }
+        try {
+          if (window.sotube && typeof window.sotube.getTheme === "function") {
+            window.sotube.getTheme().then(function (t) {
+              if (t === "light" || t === "dark") applyTheme(t);
+            }).catch(function () { });
+          }
+        } catch (_) { }
+        try {
+          if (window.sotube && window.sotube.tray && typeof window.sotube.tray.onTheme === "function") {
+            window.sotube.tray.onTheme(function (t) { applyTheme(t); });
+          }
+        } catch (_) { }
+      }
+
+      window.addEventListener("storage", function (e) {
+        if (e && e.key === "sotube-settings") {
+          var t = readStoredTheme();
+          if (t) applyTheme(t);
+        }
+      });
+
+      try {
+        if (window.matchMedia) {
+          var mq = window.matchMedia("(prefers-color-scheme: light)");
+          var onMq = function (ev) {
+            if (!readStoredTheme()) applyTheme(ev.matches ? "light" : "dark");
+          };
+          if (typeof mq.addEventListener === "function") mq.addEventListener("change", onMq);
+          else if (typeof mq.addListener === "function") mq.addListener(onMq);
+        }
+      } catch (_) { }
+
+      function send(name) {
+        try {
+          var tray = window.sotube && window.sotube.tray;
+          if (tray && typeof tray[name] === "function") {
+            tray[name]();
+            return true;
+          }
+        } catch (_) { }
+        return false;
+      }
+
+      var actionTriggered = false;
+      function triggerAction(action) {
+        if (actionTriggered) return;
+        actionTriggered = true;
+        setTimeout(function () { actionTriggered = false; }, 250);
+        if (!send(action)) {
+          try { window.close(); } catch (_) { }
+        }
+      }
+
+      function bindItem(id, action) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("click", function (e) {
+          e.preventDefault();
+          triggerAction(action);
+        });
+      }
+
+      bindItem("btnOpen", "open");
+      bindItem("btnDownloads", "downloads");
+      bindItem("btnQuit", "quit");
+
+      window.addEventListener("dragstart", function (e) { e.preventDefault(); return false; });
+      window.addEventListener("dragover", function (e) { e.preventDefault(); return false; });
+      window.addEventListener("drop", function (e) { e.preventDefault(); return false; });
+      window.addEventListener("selectstart", function (e) { e.preventDefault(); return false; });
+
+      var isMouseDown = false;
+      document.addEventListener("mousedown", function (e) {
+        if (e.button === 0) isMouseDown = true;
+      });
+      document.addEventListener("mouseup", function (e) {
+        if (e.button === 0) {
+          isMouseDown = false;
+          var target = document.elementFromPoint(e.clientX, e.clientY);
+          if (target) {
+            var item = target.closest ? target.closest(".item") : target;
+            if (item && item.classList && item.classList.contains("item")) {
+              item.click();
+            }
+          }
+        }
+      });
+      document.addEventListener("mousemove", function (e) {
+        if (isMouseDown || e.buttons === 1) {
+          var target = document.elementFromPoint(e.clientX, e.clientY);
+          if (target) {
+            var item = target.closest ? target.closest(".item") : target;
+            if (item && item.classList && item.classList.contains("item")) {
+              item.focus();
+            }
+          }
+        }
+      });
+
+      function updateOpenButton(isVisible) {
+        var textEl = document.getElementById("textOpen");
+        if (textEl) {
+          textEl.textContent = isVisible ? "Hide SoTube" : "Open SoTube";
+        } else {
+          var btn = document.getElementById("btnOpen");
+          if (btn) btn.textContent = isVisible ? "Hide SoTube" : "Open SoTube";
+        }
+      }
+
+      try {
+        if (window.sotube && window.sotube.tray) {
+          if (typeof window.sotube.tray.isWindowVisible === "function") {
+            window.sotube.tray.isWindowVisible().then(updateOpenButton).catch(function () {});
+          }
+          if (typeof window.sotube.tray.onWindowState === "function") {
+            window.sotube.tray.onWindowState(updateOpenButton);
+          }
+        }
+      } catch (_) { }
+
+      var items = Array.prototype.slice.call(document.querySelectorAll(".item"));
+
+      document.addEventListener("keydown", function (e) {
+        var idx = items.indexOf(document.activeElement);
+        if (e.key === "Escape") {
+          e.preventDefault();
+          if (!send("hide")) { try { window.close(); } catch (_) { } }
+        } else if (e.key === "ArrowDown") {
+          e.preventDefault();
+          var next = idx < 0 ? 0 : (idx + 1) % items.length;
+          items[next].focus();
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          var prev = idx < 0 ? items.length - 1 : (idx - 1 + items.length) % items.length;
+          items[prev].focus();
+        } else if (e.key === "Home") {
+          e.preventDefault();
+          items[0].focus();
+        } else if (e.key === "End") {
+          e.preventDefault();
+          items[items.length - 1].focus();
+        }
+      });
+
+      window.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
+      initTheme();
+    })();
+  </script>
+</body>
+
+</html>

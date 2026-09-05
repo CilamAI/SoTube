@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; font-src 'self' https: data:; img-src 'self' https: data: blob:; media-src 'self' blob: data: media-stream:; connect-src 'self' https:;">
+    <title>SoTube</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <script async src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="icon" type="image/x-icon" href="../assets/icon.ico">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div class="app-window">
+        <div class="title-bar">
+            <div class="title-left">
+                <img class="title-logo-mini" src="../assets/icon.png" alt="SoTube">
+                <span class="app-title">SoTube</span>
+            </div>
+            <div class="window-controls">
+                <button class="wc-btn" id="wc-minimize" aria-label="Minimize" title="Minimize">
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                        <line x1="0" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                </button>
+                <button class="wc-btn" id="wc-maximize" aria-label="Maximize" title="Maximize">
+                    <svg class="ic-max" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                        <rect x="0.5" y="0.5" width="9" height="9" fill="none" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                    <svg class="ic-restore" width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                        <rect x="0.5" y="2.5" width="7" height="7" fill="none" stroke="currentColor" stroke-width="1" />
+                        <path d="M2.5 2.5 V0.5 H9.5 V7.5 H7.5" fill="none" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                </button>
+                <button class="wc-btn wc-close" id="wc-close" aria-label="Close" title="Close">
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true">
+                        <line x1="0.5" y1="0.5" x2="9.5" y2="9.5" stroke="currentColor" stroke-width="1" />
+                        <line x1="9.5" y1="0.5" x2="0.5" y2="9.5" stroke="currentColor" stroke-width="1" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="app-body">
+            <div class="sidebar">
+                <div class="main-logo">
+                    <img class="logo-svg" src="../assets/icon.png" alt="SoTube">
+                </div>
+
+                <div class="nav-center">
+                    <div class="nav-group">
+                        <div class="nav-item active" data-tip="Home" data-i18n-tip="nav.home"
+                            data-view="home">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M4 10.5L12 3.5L20 10.5V20.5C20 21.05 19.55 21.5 19 21.5H14.5V15.5C14.5 14.95 14.05 14.5 13.5 14.5H10.5C9.95 14.5 9.5 14.95 9.5 15.5V21.5H5C4.45 21.5 4 21.05 4 20.5V10.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="nav-item" data-tip="Trim" data-i18n-tip="nav.trim" data-view="trim">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="6.5" cy="17.5" r="3" stroke="currentColor" stroke-width="1.6"/>
+                                <circle cx="6.5" cy="6.5" r="3" stroke="currentColor" stroke-width="1.6"/>
+                                <line x1="8.6" y1="15.4" x2="19.5" y2="4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                                <line x1="8.6" y1="8.6" x2="19.5" y2="19.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                                <circle cx="12.5" cy="12" r="0.75" fill="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="nav-divider"></div>
+
+                    <div class="nav-group">
+                        <div class="nav-item" data-tip="Settings" data-i18n-tip="nav.settings"
+                            data-view="settings">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/>
+                                <path d="M 10.73 3.49 A 8.6 8.6 0 0 1 13.27 3.49 L 13.50 5.98 A 6.2 6.2 0 0 1 15.19 6.69 L 17.12 5.09 A 8.6 8.6 0 0 1 18.91 6.88 L 17.31 8.81 A 6.2 6.2 0 0 1 18.02 10.50 L 20.51 10.73 A 8.6 8.6 0 0 1 20.51 13.27 L 18.02 13.50 A 6.2 6.2 0 0 1 17.31 15.19 L 18.91 17.12 A 8.6 8.6 0 0 1 17.12 18.91 L 15.19 17.31 A 6.2 6.2 0 0 1 13.50 18.02 L 13.27 20.51 A 8.6 8.6 0 0 1 10.73 20.51 L 10.50 18.02 A 6.2 6.2 0 0 1 8.81 17.31 L 6.88 18.91 A 8.6 8.6 0 0 1 5.09 17.12 L 6.69 15.19 A 6.2 6.2 0 0 1 5.98 13.50 L 3.49 13.27 A 8.6 8.6 0 0 1 3.49 10.73 L 5.98 10.50 A 6.2 6.2 0 0 1 6.69 8.81 L 5.09 6.88 A 8.6 8.6 0 0 1 6.88 5.09 L 8.81 6.69 A 6.2 6.2 0 0 1 10.50 5.98 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item" data-tip="Support" data-i18n-tip="nav.support" data-view="support" id="nav-support">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/>
+                        <line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+                        <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/>
+                        <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+                    </svg>
+                </div>
+
+                <div class="nav-item" data-tip="Help" data-i18n-tip="nav.help" data-view="help">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/>
+                        <path d="M9.75 9.5C9.75 8.26 10.76 7.25 12 7.25C13.24 7.25 14.25 8.26 14.25 9.5C14.25 10.5 13.56 11.35 12.63 11.63C12.26 11.74 12 12.09 12 12.47V13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                        <circle cx="12" cy="16.25" r="0.9" fill="currentColor"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="content-area">
+
+                <div class="view" id="view-home">
+                    <div class="search-container">
+                        <div class="input-group">
+                            <i class="ph ph-magnifying-glass search-icon"></i>
+                            <input type="text" class="url-input" placeholder="URL, keywords..."
+                                data-i18n-ph="search.placeholder">
+
+                            <div class="vertical-divider"></div>
+
+                            <div class="dropdown" id="quick-format-dropdown">
+                                <div class="format-selector" id="quick-format-btn" data-tip="Output format"
+                                    data-i18n-tip="search.formatTip" data-tip-pos="bottom">
+                                    <span id="quick-format-label">1080p</span> <i class="ph ph-caret-down"></i>
+                                </div>
+                                <div class="dropdown-menu" hidden>
+                                    <div class="dropdown-item" data-value="1440p">1440p (2K)</div>
+                                    <div class="dropdown-item selected" data-value="1080p">1080p (FHD)</div>
+                                    <div class="dropdown-item" data-value="720p">720p (HD)</div>
+                                    <div class="dropdown-item" data-value="480p">480p (SD)</div>
+                                    <div class="dropdown-item" data-value="MP3 Audio">MP3 Audio</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="ok-btn" data-i18n="search.ok">Download</button>
+                    </div>
+
+                    <div class="content-header" id="content-header" hidden>
+                        <div class="content-title" id="content-section-title" data-i18n="recent.title">Recent downloads
+                        </div>
+                        <button class="clear-btn" id="content-clear-btn">
+                            <i class="ph ph-trash"></i> <span data-i18n="recent.clear">Clear all</span>
+                        </button>
+                    </div>
+
+                    <div class="search-results-list" id="search-results-list" hidden></div>
+                    <div class="recent-list" id="recent-list" hidden></div>
+
+                    <div class="empty-state">
+                        <div class="upload-icon-wrapper">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 4V17M12 4L6.5 9.5M12 4L17.5 9.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 20H20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="empty-title" data-i18n="empty.title">Drag & drop your link or use CTRL + V</div>
+                        <div class="empty-subtitle" data-i18n="empty.subtitle">Compatible with X, YouTube, TikTok and
+                            more!</div>
+                    </div>
+                </div><!-- /view-home -->
+
+                <div class="view" id="view-trim" hidden>
+                    <div class="trim-header">
+                        <div class="content-title"><i class="ph ph-scissors"></i> <span data-i18n="trim.title">Video
+                                Trimmer</span></div>
+                        <div class="trim-subtitle" data-i18n="trim.subtitle">Cut, trim and save video segments quickly
+                            with lossless precision</div>
+                    </div>
+
+                    <div class="trim-dropzone" id="trim-dropzone">
+                        <input type="file" id="trim-file-input" accept="video/*,audio/*" style="display:none;">
+                        <div class="trim-drop-content">
+                            <div class="trim-drop-icon">
+                                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect x="2.75" y="4.5" width="18.5" height="12.5" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
+                                    <path d="M10.2 8.3C10.2 7.9 10.65 7.65 11 7.85L15.3 10.35C15.65 10.55 15.65 11.05 15.3 11.25L11 13.75C10.65 13.95 10.2 13.7 10.2 13.3V8.3Z" fill="currentColor"/>
+                                    <path d="M6 20H18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="trim-drop-title" data-i18n="trim.dropTitle">Select or drag & drop a video file
+                            </div>
+                            <div class="trim-drop-sub" data-i18n="trim.dropSub">Supports MP4, MKV, WebM, MOV, AVI, MP3,
+                                TS and more</div>
+                            <button class="ok-btn" id="trim-browse-btn" type="button">
+                                <i class="ph ph-folder-open"></i> <span data-i18n="trim.browse">Browse Video</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="trim-workspace" id="trim-workspace" hidden>
+                        <div class="trim-file-banner">
+                            <div class="trim-file-info">
+                                <i class="ph ph-file-video trim-file-icon"></i>
+                                <div class="trim-file-meta">
+                                    <div class="trim-file-name" id="trim-file-name">video.mp4</div>
+                                    <div class="trim-file-details" id="trim-file-details">00:00:00 • 0 MB</div>
+                                </div>
+                            </div>
+                            <button class="btn-ghost" id="trim-change-file-btn" type="button">
+                                <i class="ph ph-arrows-clockwise"></i> <span data-i18n="trim.changeFile">Change
+                                    Video</span>
+                            </button>
+                        </div>
+
+                        <div class="trim-player-card">
+                            <div class="trim-video-container">
+                                <video id="trim-video" playsinline></video>
+                                <div class="trim-video-overlay" id="trim-video-overlay">
+                                    <button class="trim-overlay-play-btn" id="trim-overlay-play-btn" type="button"
+                                        aria-label="Play">
+                                        <i class="ph ph-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="trim-controls-bar">
+                                <button class="trim-ctrl-btn" id="trim-play-pause-btn" type="button" title="Play/Pause">
+                                    <i class="ph ph-play" id="trim-play-icon"></i>
+                                </button>
+
+                                <div class="trim-time-readout">
+                                    <span id="trim-current-time">00:00:00.000</span> / <span
+                                        id="trim-duration">00:00:00.000</span>
+                                </div>
+
+                                <div class="trim-timeline-wrapper">
+                                    <div class="trim-timeline-track" id="trim-timeline-track">
+                                        <div class="trim-timeline-range" id="trim-timeline-range"></div>
+                                        <div class="trim-timeline-needle" id="trim-timeline-needle"></div>
+                                        <div class="trim-marker trim-marker-start" id="trim-marker-start"
+                                            title="Trim Start"></div>
+                                        <div class="trim-marker trim-marker-end" id="trim-marker-end" title="Trim End">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="trim-volume-wrapper">
+                                    <button class="trim-ctrl-btn" id="trim-mute-btn" type="button" title="Mute/Unmute">
+                                        <i class="ph ph-speaker-high" id="trim-vol-icon"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="trim-options-grid">
+                            <div class="trim-box">
+                                <div class="trim-box-label"><i class="ph ph-arrow-line-right"></i> <span
+                                        data-i18n="trim.startTime">Start Time</span></div>
+                                <div class="trim-time-inputs">
+                                    <input type="text" class="trim-time-input" id="trim-start-input"
+                                        value="00:00:00.000" spellcheck="false">
+                                    <button class="trim-btn-mini" id="trim-set-start-btn" type="button"
+                                        title="Set to current position">
+                                        <i class="ph ph-crosshair"></i> <span data-i18n="trim.setCurrent">Set
+                                            Current</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="trim-box">
+                                <div class="trim-box-label"><i class="ph ph-arrow-line-left"></i> <span
+                                        data-i18n="trim.endTime">End Time</span></div>
+                                <div class="trim-time-inputs">
+                                    <input type="text" class="trim-time-input" id="trim-end-input" value="00:00:00.000"
+                                        spellcheck="false">
+                                    <button class="trim-btn-mini" id="trim-set-end-btn" type="button"
+                                        title="Set to current position">
+                                        <i class="ph ph-crosshair"></i> <span data-i18n="trim.setCurrent">Set
+                                            Current</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="trim-box trim-box-summary">
+                                <div class="trim-box-label"><i class="ph ph-clock"></i> <span
+                                        data-i18n="trim.clipDuration">Clip Duration</span></div>
+                                <div class="trim-duration-badge" id="trim-clip-duration">00:00:00.000</div>
+                            </div>
+
+                            <div class="trim-box">
+                                <div class="trim-box-label"><i class="ph ph-gear-six"></i> <span
+                                        data-i18n="trim.mode">Cut Mode</span></div>
+                                <div class="segmented" id="trim-mode-segmented">
+                                    <button type="button" class="selected" data-value="fast"
+                                        data-i18n="trim.fastMode">Fast (Lossless)</button>
+                                    <button type="button" data-value="encode" data-i18n="trim.encodeMode">Encode
+                                        (Exact)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="trim-action-row">
+                            <button class="ok-btn trim-start-btn" id="trim-submit-btn" type="button">
+                                <i class="ph ph-scissors"></i> <span data-i18n="trim.action">Trim & Save</span>
+                            </button>
+                        </div>
+
+                        <div class="trim-status-card" id="trim-status-card" hidden>
+                            <div class="trim-status-header">
+                                <div class="trim-status-text" id="trim-status-text">Processing...</div>
+                                <button class="clear-btn" id="trim-cancel-btn" type="button">
+                                    <i class="ph ph-x"></i> <span data-i18n="trim.cancel">Cancel</span>
+                                </button>
+                            </div>
+                            <div class="download-progress-track">
+                                <div class="download-progress-fill" id="trim-progress-fill" style="width: 0%;"></div>
+                            </div>
+                            <div class="trim-result-actions" id="trim-result-actions" hidden>
+                                <button class="ok-btn trim-btn-small" id="trim-open-folder-btn" type="button">
+                                    <i class="ph ph-folder"></i> <span data-i18n="trim.showInFolder">Show in
+                                        Folder</span>
+                                </button>
+                                <button class="btn-ghost trim-btn-small" id="trim-play-result-btn" type="button">
+                                    <i class="ph ph-play-circle"></i> <span data-i18n="trim.playResult">Play
+                                        Result</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /view-trim -->
+
+                <div class="view" id="view-settings" hidden>
+                    <div class="settings-header">
+                        <div class="content-title" data-i18n="settings.title">Settings</div>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-palette settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="theme.title">Theme</div>
+                            <div class="settings-desc" data-i18n="theme.desc">Application appearance</div>
+                        </div>
+                        <div class="segmented" id="theme-segmented">
+                            <button data-value="dark" data-i18n="theme.dark">Dark</button>
+                            <button data-value="light" data-i18n="theme.light">Light</button>
+                        </div>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-film-strip settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="format.title">Default format</div>
+                            <div class="settings-desc" data-i18n="format.desc">Format used for new downloads</div>
+                        </div>
+                        <div class="dropdown" id="format-dropdown">
+                            <button class="dropdown-btn" id="setting-format-btn">
+                                <span id="setting-format-label">1080p</span>
+                                <i class="ph ph-caret-down"></i>
+                            </button>
+                            <div class="dropdown-menu" hidden>
+                                <div class="dropdown-item" data-value="1440p">1440p (2K)</div>
+                                <div class="dropdown-item selected" data-value="1080p">1080p (FHD)</div>
+                                <div class="dropdown-item" data-value="720p">720p (HD)</div>
+                                <div class="dropdown-item" data-value="480p">480p (SD)</div>
+                                <div class="dropdown-item" data-value="MP3 Audio">MP3 Audio</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-folder settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="folder.title">Download folder</div>
+                            <div class="settings-path" id="setting-location-path">Default downloads folder</div>
+                            <div class="settings-desc" data-i18n="folder.desc">Destination folder for downloaded files
+                            </div>
+                            <div class="settings-actions">
+                                <button class="btn-ghost" id="location-browse" data-i18n="folder.browse">Browse</button>
+                                <button class="btn-ghost" id="location-default" data-i18n="folder.defaultBtn">Default
+                                    folder</button>
+                                <input type="file" id="folder-picker" webkitdirectory directory hidden>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-subtitles settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="subtitles.title">Retrieve subtitles</div>
+                            <div class="settings-desc" data-i18n="subtitles.desc">Download and insert subtitles in video
+                                files</div>
+                            <div class="settings-actions" id="subtitle-chips">
+                                <div class="dropdown" id="subtitle-add-dropdown">
+                                    <button class="btn-ghost" id="subtitle-add-btn" data-i18n="subtitles.add">+ Add
+                                        language</button>
+                                    <div class="dropdown-menu" hidden>
+                                        <div class="dropdown-item" data-value="Spanish">Spanish</div>
+                                        <div class="dropdown-item" data-value="French">French</div>
+                                        <div class="dropdown-item" data-value="German">German</div>
+                                        <div class="dropdown-item" data-value="Italian">Italian</div>
+                                        <div class="dropdown-item" data-value="Portuguese">Portuguese</div>
+                                        <div class="dropdown-item" data-value="Russian">Russian</div>
+                                        <div class="dropdown-item" data-value="Korean">Korean</div>
+                                        <div class="dropdown-item" data-value="Turkish">Turkish</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch"><input type="checkbox" data-setting="subtitles"><span
+                                class="track"></span><span class="knob"></span></label>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-music-note settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="audio.title">Other audio tracks</div>
+                            <div class="settings-desc" data-i18n="audio.desc">Retrieve additional audio tracks when
+                                available</div>
+                        </div>
+                        <label class="switch"><input type="checkbox" data-setting="audioTracks"><span
+                                class="track"></span><span class="knob"></span></label>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-bell settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="notify.title">Notify after completion</div>
+                            <div class="settings-desc" data-i18n="notify.desc">Show a notification when all downloads
+                                are complete</div>
+                        </div>
+                        <label class="switch"><input type="checkbox" data-setting="notify"><span
+                                class="track"></span><span class="knob"></span></label>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-download settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="parallel.title">Parallel downloads</div>
+                            <div class="settings-desc" data-i18n="parallel.desc">Maximum simultaneous downloads</div>
+                        </div>
+                        <input type="number" class="stepper" id="setting-parallel" min="1" max="8" step="1" value="2">
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-translate settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="language.title">Language</div>
+                            <div class="settings-desc" data-i18n="language.desc">Application language</div>
+                        </div>
+                        <div class="dropdown" id="language-dropdown">
+                            <button class="dropdown-btn" id="setting-language-btn">
+                                <span id="setting-language-label">English</span>
+                                <i class="ph ph-caret-down"></i>
+                            </button>
+                            <div class="dropdown-menu" hidden>
+                                <div class="dropdown-item selected" data-value="English">English</div>
+                                <div class="dropdown-item" data-value="Spanish">Spanish</div>
+                                <div class="dropdown-item" data-value="French">French</div>
+                                <div class="dropdown-item" data-value="German">German</div>
+                                <div class="dropdown-item" data-value="Russian">Russian</div>
+                                <div class="dropdown-item" data-value="Korean">Korean</div>
+                                <div class="dropdown-item" data-value="Turkish">Turkish</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-cookie settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="cookies.title">Use cookies from your browser</div>
+                            <div class="settings-desc" data-i18n="cookies.desc">Allows you to download private videos
+                            </div>
+                        </div>
+                        <label class="switch"><input type="checkbox" data-setting="cookies"><span
+                                class="track"></span><span class="knob"></span></label>
+                    </div>
+
+                    <div class="settings-row">
+                        <i class="ph ph-info settings-row-icon"></i>
+                        <div class="settings-text">
+                            <div class="settings-label" data-i18n="about.version">SoTube version</div>
+                        </div>
+                        <div class="settings-value">1.0.0</div>
+                    </div>
+                </div>
+
+                <div class="view" id="view-help" hidden>
+                    <div class="help-header">
+                        <div class="content-title"><i class="ph ph-question"></i> <span data-i18n="help.title">Help &
+                                Shortcuts</span></div>
+                        <div class="help-subtitle" data-i18n="help.subtitle">Quick guide, keyboard shortcuts, and
+                            supported formats</div>
+                    </div>
+
+                    <div class="help-grid">
+                        <div class="help-card">
+                            <div class="help-card-title">
+                                <i class="ph ph-keyboard"></i>
+                                <span data-i18n="help.shortcuts">Keyboard Shortcuts</span>
+                            </div>
+                            <div class="shortcuts-list">
+                                <div class="shortcut-row">
+                                    <span class="shortcut-desc">Paste URL & start download</span>
+                                    <span class="kbd-pill"><kbd>Ctrl</kbd> + <kbd>V</kbd></span>
+                                </div>
+                                <div class="shortcut-row">
+                                    <span class="shortcut-desc">Search or trigger download</span>
+                                    <span class="kbd-pill"><kbd>Enter</kbd></span>
+                                </div>
+                                <div class="shortcut-row">
+                                    <span class="shortcut-desc">Play / Pause video in Trimmer</span>
+                                    <span class="kbd-pill"><kbd>Space</kbd></span>
+                                </div>
+                                <div class="shortcut-row">
+                                    <span class="shortcut-desc">Set Trim start point</span>
+                                    <span class="kbd-pill"><kbd>[</kbd></span>
+                                </div>
+                                <div class="shortcut-row">
+                                    <span class="shortcut-desc">Set Trim end point</span>
+                                    <span class="kbd-pill"><kbd>]</kbd></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-card">
+                            <div class="help-card-title">
+                                <i class="ph ph-download-simple"></i>
+                                <span data-i18n="help.howTo">How to Download & Convert</span>
+                            </div>
+                            <div class="help-steps">
+                                <div class="help-step">
+                                    <div class="help-step-num">1</div>
+                                    <div class="help-step-content">
+                                        <strong>Copy Link:</strong> Copy any video or music link from your browser or
+                                        mobile app.
+                                    </div>
+                                </div>
+                                <div class="help-step">
+                                    <div class="help-step-num">2</div>
+                                    <div class="help-step-content">
+                                        <strong>Paste:</strong> Use <kbd>Ctrl+V</kbd> anywhere or enter search keywords.
+                                    </div>
+                                </div>
+                                <div class="help-step">
+                                    <div class="help-step-num">3</div>
+                                    <div class="help-step-content">
+                                        <strong>Format:</strong> Choose 1440p (2K), 1080p (FHD), 720p (HD), 480p (SD), or MP3 Audio.
+                                    </div>
+                                </div>
+                                <div class="help-step">
+                                    <div class="help-step-num">4</div>
+                                    <div class="help-step-content">
+                                        <strong>Trim:</strong> Click Options (<i class="ph ph-dots-three-vertical"></i>)
+                                        on any download to trim it losslessly.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="help-card">
+                            <div class="help-card-title">
+                                <i class="ph ph-globe"></i>
+                                <span data-i18n="help.platforms">Supported Platforms</span>
+                            </div>
+                            <p class="help-card-desc" data-i18n="help.platformsDesc">Powered by yt-dlp & FFmpeg with
+                                support for over 1,000+ sites and media networks:</p>
+                            <div class="platform-chips">
+                                <div class="platform-chip"><i class="ph ph-youtube-logo"></i> YouTube & Shorts</div>
+                                <div class="platform-chip"><i class="ph ph-tiktok-logo"></i> TikTok</div>
+                                <div class="platform-chip"><i class="ph ph-x-logo"></i> X (Twitter)</div>
+                                <div class="platform-chip"><i class="ph ph-instagram-logo"></i> Instagram Reels</div>
+                                <div class="platform-chip"><i class="ph ph-music-notes"></i> SoundCloud</div>
+                                <div class="platform-chip"><i class="ph ph-video-camera"></i> Vimeo</div>
+                                <div class="platform-chip"><i class="ph ph-twitch-logo"></i> Twitch Clips</div>
+                                <div class="platform-chip"><i class="ph ph-plus"></i> 1,000+ more</div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+                <div class="view" id="view-support" hidden>
+                    <div class="help-header support-header">
+                        <div class="content-title">
+                            <i class="ph ph-lifebuoy"></i>
+                            <span data-i18n="support.title">Help & Support</span>
+                        </div>
+                        <div class="help-subtitle" data-i18n="support.subtitle">System diagnostics, troubleshooting guides, and community channels</div>
+                    </div>
+
+                    <div class="support-grid">
+                        <div class="support-card">
+                            <div class="support-card-head">
+                                <i class="ph ph-folder-open"></i>
+                                <span data-i18n="support.storage">Storage & Output</span>
+                            </div>
+                            <p data-i18n="support.storageDesc">Quickly open your downloaded files, converted MP3 audio, and trimmed media clips.</p>
+                            <button class="support-btn" id="btn-support-open-downloads" type="button">
+                                <i class="ph ph-arrow-square-out"></i>
+                                <span data-i18n="support.openFolder">Open Downloads Folder</span>
+                            </button>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-head">
+                                <i class="ph ph-bug"></i>
+                                <span data-i18n="support.bugs">Report an Issue</span>
+                            </div>
+                            <p data-i18n="support.bugsDesc">Found a broken extractor, download failure, or UI bug? File a report on GitHub.</p>
+                            <button class="support-btn" id="btn-support-issues" type="button">
+                                <i class="ph ph-github-logo"></i>
+                                <span data-i18n="support.openTracker">GitHub Issue Tracker</span>
+                            </button>
+                        </div>
+
+                        <div class="support-card">
+                            <div class="support-card-head">
+                                <i class="ph ph-chats-circle"></i>
+                                <span data-i18n="support.community">Community & Features</span>
+                            </div>
+                            <p data-i18n="support.communityDesc">Suggest new media platforms, format presets, and discuss features with users.</p>
+                            <button class="support-btn" id="btn-support-discussions" type="button">
+                                <i class="ph ph-lightbulb"></i>
+                                <span data-i18n="support.suggest">Feature Suggestions</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="help-card" style="margin-top: 14px;">
+                        <div class="help-card-title">
+                            <i class="ph ph-question"></i>
+                            <span data-i18n="support.faq">Troubleshooting & FAQ</span>
+                        </div>
+                        <div class="faq-list">
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Why did a video download fail or time out?</span>
+                                    <i class="ph ph-caret-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    Downloads can stall due to YouTube bot verification, regional restrictions, or unstable network. Confirm your internet connection, verify the link is public, and retry using 720p or 480p format.
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>How do I convert YouTube videos to MP3?</span>
+                                    <i class="ph ph-caret-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    Click the format dropdown next to the search bar and select "MP3 Audio". SoTube will extract the audio track and encode it into high quality 320kbps MP3 automatically.
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>How do I use the Lossless Video Trimmer?</span>
+                                    <i class="ph ph-caret-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    Click the Trim tab in the sidebar, select a video file, and set start and end points using the interactive playback slider. Click "Start Trimming" to cut without quality loss.
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">
+                                    <span>Where are downloaded files stored?</span>
+                                    <i class="ph ph-caret-down"></i>
+                                </div>
+                                <div class="faq-answer">
+                                    Files are saved in your Windows Downloads folder by default. You can customize the download destination anytime in Settings.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    </div>
+
+    <script src="../renderer.js"></script>
+</body>
+
+</html>
