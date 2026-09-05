@@ -5,13 +5,14 @@
 <h1 align="center">SoTube</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-26.0.0-41B9F6?style=flat-square" alt="Version" />
-  <img src="https://img.shields.io/badge/Electron-44.1.1-47848F?style=flat-square&logo=electron&logoColor=white" alt="Electron" />
-  <img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Platform" />
-  <img src="https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="CI" />
-  <img src="https://img.shields.io/badge/Bun-Compatible-fbf0df?style=flat-square&logo=bun&logoColor=black" alt="Bun" />
-  <img src="https://img.shields.io/badge/Tests-57%20Passing-brightgreen?style=flat-square" alt="Tests" />
-  <img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square" alt="License" />
+  <a href="https://github.com/CilamAI/SoTube"><img src="https://img.shields.io/badge/version-26.0.0-41B9F6?style=flat-square" alt="Version" /></a>
+  <a href="https://www.electronjs.org/"><img src="https://img.shields.io/badge/Electron-44.1.1-47848F?style=flat-square&logo=electron&logoColor=white" alt="Electron" /></a>
+  <a href="https://github.com/CilamAI/SoTube/releases/latest"><img src="https://img.shields.io/badge/Platform-Windows-0078D6?style=flat-square&logo=windows&logoColor=white" alt="Platform" /></a>
+  <a href="https://github.com/CilamAI/SoTube/releases/latest"><img src="https://img.shields.io/badge/Download-SoTubeSetup.exe-0057B8?style=flat-square&logo=download&logoColor=white" alt="Download" /></a>
+  <a href="https://github.com/CilamAI/SoTube/actions"><img src="https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?style=flat-square&logo=githubactions&logoColor=white" alt="CI" /></a>
+  <a href="https://bun.sh/"><img src="https://img.shields.io/badge/Bun-Compatible-fbf0df?style=flat-square&logo=bun&logoColor=black" alt="Bun" /></a>
+  <a href="https://github.com/CilamAI/SoTube/actions"><img src="https://img.shields.io/badge/Tests-57%20Passing-brightgreen?style=flat-square" alt="Tests" /></a>
+  <a href="LICENSE.txt"><img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square" alt="License" /></a>
 </p>
 
 <p align="center">
