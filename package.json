@@ -28,7 +28,7 @@
     "config": "^3.3.12",
     "electron": "^44.1.1",
     "electron-builder": "^26.15.3",
-    "express": "^4.21.2",
+    "express": "^5.2.1",
     "http": "^0.0.1-security",
     "path": "^0.12.7",
     "typescript": "^5.9.3"
