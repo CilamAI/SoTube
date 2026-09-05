@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="SoTube 26.0.0">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d2233"/>
+      <stop offset="0.55" stop-color="#123a52"/>
+      <stop offset="1" stop-color="#1a6e8a"/>
+    </linearGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5bd6ff"/>
+      <stop offset="1" stop-color="#3aa6e0"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#0a1a26" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <circle cx="1080" cy="80" r="260" fill="#1a6e8a" opacity="0.18"/>
+  <circle cx="1280" cy="560" r="220" fill="#5bd6ff" opacity="0.08"/>
+
+  <g filter="url(#glow)">
+    <rect x="90" y="170" width="200" height="200" rx="48" fill="url(#logo)"/>
+    <path d="M176 200 L246 270 L176 340 Z" fill="#0d2233" stroke="#0d2233" stroke-width="10" stroke-linejoin="round"/>
+  </g>
+
+  <text x="340" y="250" font-family="Segoe UI, sans-serif" font-size="92" font-weight="700" fill="#f0f4fc">SoTube</text>
+  <rect x="352" y="280" width="150" height="44" rx="22" fill="#41b9f6"/>
+  <text x="427" y="310" font-family="Segoe UI, sans-serif" font-size="24" font-weight="700" fill="#0b2030" text-anchor="middle">26.0.0</text>
+
+  <text x="352" y="368" font-family="Segoe UI, sans-serif" font-size="24" fill="#cfe4f5">A desktop client for downloading and converting media.</text>
+
+  <g font-family="Segoe UI, sans-serif" font-size="19" font-weight="600">
+    <rect x="352" y="416" width="150" height="46" rx="12" fill="#ffffff" opacity="0.10"/>
+    <text x="427" y="446" fill="#f0f4fc" text-anchor="middle">Download</text>
+    <rect x="518" y="416" width="150" height="46" rx="12" fill="#ffffff" opacity="0.10"/>
+    <text x="593" y="446" fill="#f0f4fc" text-anchor="middle">Convert</text>
+    <rect x="684" y="416" width="132" height="46" rx="12" fill="#ffffff" opacity="0.10"/>
+    <text x="750" y="446" fill="#f0f4fc" text-anchor="middle">Trim</text>
+    <rect x="832" y="416" width="196" height="46" rx="12" fill="#ffffff" opacity="0.10"/>
+    <text x="930" y="446" fill="#f0f4fc" text-anchor="middle">7 Languages</text>
+  </g>
+
+  <text x="90" y="568" font-family="Segoe UI, sans-serif" font-size="18" fill="#7fa8bd">Windows · Inno Setup 6 · Apache License 2.0</text>
+
+  <rect x="900" y="566" width="290" height="1" fill="#41b9f6" opacity="0.5"/>
+</svg>
