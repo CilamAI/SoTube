@@ -20,7 +20,7 @@
 
   <g filter="url(#glow)">
     <rect x="90" y="170" width="200" height="200" rx="48" fill="url(#logo)"/>
-    <path d="M176 200 L246 270 L176 340 Z" fill="#0d2233" stroke="#0d2233" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M180 206 L258 270 L180 334 Z" fill="#0d2233" stroke="#0d2233" stroke-width="30" stroke-linejoin="round" paint-order="stroke"/>
   </g>
 
   <text x="340" y="250" font-family="Segoe UI, sans-serif" font-size="92" font-weight="700" fill="#f0f4fc">SoTube</text>
