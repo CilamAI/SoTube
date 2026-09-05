@@ -43,6 +43,13 @@
 | Windows | Supported |
 | Ubuntu | Supported |
 
+| Architecture |
+|---|
+| x86-64 (64-bit) |
+| AArch64 (ARM64) |
+| ARMv7 (32-bit) |
+| x86-32 (32-bit) |
+
 ---
 
 ## Project Structure
