@@ -36,9 +36,12 @@
 
 ```text
 SoTube/
-├── .github/               # GitHub Actions CI/CD workflows and community templates
+├── .github/               # GitHub Actions CI/CD workflows, automation, and templates
 │   ├── workflows/         # Continuous integration and release automation
-│   └── ISSUE_TEMPLATE/    # Bug report and feature request issue templates
+│   ├── ISSUE_TEMPLATE/    # Bug report and feature request issue templates
+│   ├── dependabot.yml     # Dependabot dependency update configuration
+│   └── pull_request_template.md
+├── .sst/                  # SST platform config and generated TypeScript declarations
 ├── .vscode/               # VS Code workspace settings, launch targets, and tasks
 │   ├── launch.json        # Debug configurations (Electron main, watch, test)
 │   ├── tasks.json         # Automated NPM build, test, and installer tasks
@@ -48,10 +51,12 @@ SoTube/
 │   ├── preload.js         # Electron contextBridge API definitions
 │   └── index.js           # API package entry point
 ├── assets/                # Application icons and wizard bitmaps
-│   ├── icon.ico           # Executable & window icon
-│   ├── icon.png           # Master 1024x1024 application icon
+│   ├── icon.ico           # Executable & window icon (multi-size PNG frames)
+│   ├── icon.png           # Master 1024x1024 rounded application icon
+│   ├── icon.bmp           # Inno Setup header small icon (55x58)
 │   ├── sidebar.bmp        # Inno Setup wizard sidebar bitmap (164x314)
-│   └── icon.bmp           # Inno Setup header small icon (55x58)
+│   ├── wizardSmall.bmp    # Inno Setup wizard small image (55x58)
+│   └── installerSidebar.bmp # Inno Setup installer sidebar bitmap (164x314)
 ├── locales/               # Localization JSON files
 │   ├── en.json            # English
 │   ├── de.json            # German
@@ -72,11 +77,15 @@ SoTube/
 ├── pages/                 # HTML user interface templates
 │   ├── index.html         # Main application window
 │   ├── splash.html        # Frameless transparent splash screen
-│   └── tray.html          # Windows 11 tray popup flyout
+│   ├── tray.html          # Windows 11 tray popup flyout
+│   ├── dialog.html        # Quit confirmation dialog
+│   └── support.html       # Support & help page
 ├── settings/              # Application settings and default configuration
 │   ├── default.json       # Default user preferences schema
-│   └── index.js           # Settings manager module
+│   ├── index.js           # Settings manager module (incl. window-state persistence)
+│   └── .settings.json     # Local dev settings fallback storage
 ├── dist/                  # Build output and packaged binaries
+├── .gitignore             # Ignored paths (node_modules, dist, out, logs)
 ├── installer.iss          # Inno Setup compiler configuration
 ├── main.js                # Electron main process entry point
 ├── preload.js             # Root preload forwarder
