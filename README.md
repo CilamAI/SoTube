@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="assets/warning-banner.png" width="850" alt="You may be being scammed warning" />
+</p>
+
+<p align="center">
   <img src="assets/icon.png" width="128" height="128" alt="SoTube Logo" />
 </p>
 
