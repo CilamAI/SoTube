@@ -40,8 +40,8 @@
 
 | Architecture | Windows | Ubuntu |
 |---|---|---|
-| x86-64 (64-bit) | EXE MSI | Download |
-| AArch64 (ARM64) | EXE MSI | Download |
+| x86-64 (64-bit) | EXE | Download |
+| AArch64 (ARM64) | EXE | Download |
 | ARMv7 (32-bit) | | Download |
 | x86-32 (32-bit) | EXE (Legacy) | |
 
